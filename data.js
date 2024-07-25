@@ -1,7 +1,7 @@
 import { PencilRuler, PersonStanding } from "lucide-react";
 import { FaHotTub } from "react-icons/fa";
 
-const iconSize = 80;
+const iconSize = 60;
 
 export const data = [
   {

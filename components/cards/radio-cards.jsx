@@ -5,7 +5,6 @@ import { H5 } from "../ui/typography";
 import { cn } from "@/lib/utils";
 
 export default function RadioCards({ onChange, value, item, watch }) {
-  console.log(watch());
   return (
     <RadioGroup
       onValueChange={onChange}
@@ -47,7 +46,7 @@ export default function RadioCards({ onChange, value, item, watch }) {
                 value={ele.value}
                 id={ele.value}
                 className="absolute top-4 right-4 text-primary"
-                checked={watch(item.name) === ele.value}
+                // checked={watch(item.name) === ele.value}
               />
               <div className="space-y-4">
                 <div

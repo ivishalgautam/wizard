@@ -5,8 +5,8 @@ export default function ProductCards({ products }) {
   return (
     <div className="grid grid-cols-12 gap-6">
       {/* {JSON.stringify(filteredProducts())} */}
-      {products.map((product) => (
-        <ProductCard key={product.name} product={product} />
+      {products.map((product, key) => (
+        <ProductCard key={key} product={product} />
       ))}
     </div>
   );

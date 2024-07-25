@@ -1,5 +1,7 @@
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "sonner";
+import Header from "@/components/header";
 
 const manrope = Manrope({
   weight: ["200", "300", "400", "500", "600", "700", "800"],
@@ -14,7 +16,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`bg-gray-100 ${manrope.className}`}>{children}</body>
+      <body className={`bg-gray-100 ${manrope.className}`}>
+        <div className="relative z-50">
+          <div className="absolute">
+            <Header />
+          </div>
+        </div>
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }
