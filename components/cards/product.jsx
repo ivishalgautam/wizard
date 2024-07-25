@@ -157,7 +157,7 @@ export default function ProductCard({ product }) {
             </div>
             <DialogFooter>
               <Button type="submit" onClick={() => handleSubmit()}>
-                Save changes
+                Submit
               </Button>
             </DialogFooter>
           </DialogContent>
