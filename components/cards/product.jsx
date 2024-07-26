@@ -28,6 +28,7 @@ export default function ProductCard({ ind, product, handleSubmit, isLoading }) {
     email: "support@brandingwaale.com",
     phone: "",
     message: "",
+    email: "",
   });
 
   return (
@@ -112,6 +113,7 @@ export default function ProductCard({ ind, product, handleSubmit, isLoading }) {
                   Fullname
                 </Label>
                 <Input
+                  placeholder="Enter fullname"
                   id="fullname"
                   className="col-span-3"
                   onChange={(e) =>
@@ -124,10 +126,24 @@ export default function ProductCard({ ind, product, handleSubmit, isLoading }) {
                   Phone
                 </Label>
                 <Input
-                  id="mobile"
+                  placeholder="Enter Phone"
+                  id="phone"
                   className="col-span-3"
                   onChange={(e) =>
                     setInputs((prev) => ({ ...prev, phone: e.target.value }))
+                  }
+                />
+              </div>
+              <div className="">
+                <Label htmlFor="email" className="text-right">
+                  Email
+                </Label>
+                <Input
+                  placeholder="Enter Email"
+                  id="email"
+                  className="col-span-3"
+                  onChange={(e) =>
+                    setInputs((prev) => ({ ...prev, email: e.target.value }))
                   }
                 />
               </div>
@@ -136,6 +152,7 @@ export default function ProductCard({ ind, product, handleSubmit, isLoading }) {
                   Message
                 </Label>
                 <Textarea
+                  placeholder="Enter Message"
                   id="message"
                   className="col-span-3"
                   onChange={(e) =>

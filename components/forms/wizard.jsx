@@ -71,6 +71,9 @@ export default function WizardForm({ setIsFormSubmit }) {
     if (!inputs.message) {
       return toast.error("Please enter you message!");
     }
+    if (!inputs.email) {
+      return toast.error("Please enter you email!");
+    }
 
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
