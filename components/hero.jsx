@@ -1,24 +1,23 @@
 import React from "react";
-import { ImagesSlider } from "./image-slider";
-import banner1 from "../public/images/banners/banner-1.jpg";
-import banner2 from "../public/images/banners/banner-2.jpg";
-import banner3 from "../public/images/banners/banner-3.jpg";
-import banner4 from "../public/images/banners/banner-4.jpg";
-import banner5 from "../public/images/banners/banner-5.jpg";
+// import { ImagesSlider } from "./image-slider";
+// import banner1 from "../public/images/banners/banner-1.jpg";
+// import banner2 from "../public/images/banners/banner-2.jpg";
+// import banner3 from "../public/images/banners/banner-3.jpg";
+// import banner4 from "../public/images/banners/banner-4.jpg";
+// import banner5 from "../public/images/banners/banner-5.jpg";
 import Image from "next/image";
 import Link from "next/link";
 
-const banners = [banner1, banner3, banner4, banner2, banner5];
+// const banners = [banner1, banner3, banner4, banner2, banner5];
 
 export default function Hero() {
   return (
-    // <ImagesSlider images={banners}></ImagesSlider>
     <section className="relative z-50 h-screen flex items-center justify-center before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-black/60 before:z-10">
       <video
         src="/videos/hero.mp4"
         autoPlay
         // controls
-        className="absolute h-full object-cover"
+        className="absolute h-full w-full object-cover"
         muted
         loop
       ></video>
