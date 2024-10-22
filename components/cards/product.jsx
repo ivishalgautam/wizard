@@ -27,7 +27,7 @@ export default function ProductCard({ ind, product, handleSubmit, isLoading }) {
     name: "",
     email: "support@brandingwaale.com",
     phone: "",
-    message: "",
+    message: `I want enquire about ${product.title}`,
     email: "",
   });
 
@@ -161,6 +161,7 @@ export default function ProductCard({ ind, product, handleSubmit, isLoading }) {
                       message: e.target.value,
                     }))
                   }
+                  disabled
                 />
               </div>
             </div>

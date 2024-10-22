@@ -15,8 +15,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`bg-gray-100 ${manrope.className}`}>
+    <html lang="en">
+      <body
+        className={`bg-gray-100 ${manrope.className}`}
+        suppressHydrationWarning={true}
+      >
         <div className="relative z-50">
           <div className="absolute">
             <Header />

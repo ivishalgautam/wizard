@@ -39,7 +39,13 @@ export default function Hero() {
             href={"/wizard"}
             className="uppercase tracking-wider px-8 py-3 m-2 text-lg border rounded border-primary bg-primary text-white hover:bg-transparent transition-colors dark:text-gray-900 dark:border-gray-300"
           >
-            Enquire now
+            Spa&apos;s
+          </Link>
+          <Link
+            href={"/pools"}
+            className="uppercase tracking-wider px-8 py-3 m-2 text-lg border rounded border-primary bg-primary text-white hover:bg-transparent transition-colors dark:text-gray-900 dark:border-gray-300"
+          >
+            Pools
           </Link>
         </div>
       </div>

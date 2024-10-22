@@ -10,7 +10,7 @@ import { data } from "@/data";
 import Image from "next/image";
 import { toast } from "sonner";
 import { MoveLeft, MoveRight } from "lucide-react";
-import { motion } from "framer-motion";
+import WizardLayout from "../layout/wizard-layout";
 
 export default function WizardForm({ setIsFormSubmit }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -110,75 +110,53 @@ export default function WizardForm({ setIsFormSubmit }) {
   };
 
   return (
-    <div>
-      <div className="relative before:absolute before:bg-black/50 before:top-0 before:left-0 before:w-full before:h-full p-">
-        <div className="absolute z-10 w-full h-full flex items-center justify-center">
-          <Image
-            src={"/images/logo.png"}
-            className="drop-shadow-xl"
-            width={300}
-            height={300}
-            alt="logo"
-          />
-        </div>
-        <div className="bg-black/20">
-          <Image
-            src={"/images/hero.jpeg"}
-            width={500}
-            height={500}
-            alt="tub"
-            className="w-full h-60 object-cover object-center"
-          />
-        </div>
-      </div>
-      <div className="mt-20">
-        <ProgressBar data={data} currPos={currPos} />
+    <WizardLayout>
+      <ProgressBar data={data} currPos={currPos} />
 
-        <div className="container p-8 space-y-20 pb-32">
-          {currPos === data.length - 1 ? (
-            <div className="mt-20">
-              <ProductCards
-                handleSubmit={handleQuery}
-                products={filteredProducts()}
-                isLoading={isLoading}
+      <div className="container p-8 space-y-20 pb-32">
+        {currPos === data.length - 1 ? (
+          <div className="mt-20">
+            <ProductCards
+              handleSubmit={handleQuery}
+              products={filteredProducts()}
+              isLoading={isLoading}
+            />
+          </div>
+        ) : (
+          data.map((item, key) => (
+            <div
+              key={key}
+              className={cn("hidden space-y-8", {
+                block: key === currPos,
+              })}
+            >
+              <H1 className={"text-center my-24"}>{item.heading}</H1>
+              {errors[item.name] && (
+                <span className="text-red-500 font-extrabold">
+                  {errors[item.name].message}
+                </span>
+              )}
+              <RadioCards
+                item={item}
+                handleSelect={handleSelect}
+                selected={selected}
               />
             </div>
-          ) : (
-            data.map((item, key) => (
-              <div
-                key={key}
-                className={cn("hidden space-y-8", {
-                  block: key === currPos,
-                })}
-              >
-                <H1 className={"text-center my-24"}>{item.heading}</H1>
-                {errors[item.name] && (
-                  <span className="text-red-500 font-extrabold">
-                    {errors[item.name].message}
-                  </span>
-                )}
-                <RadioCards
-                  item={item}
-                  handleSelect={handleSelect}
-                  selected={selected}
-                />
-              </div>
-            ))
-          )}
-        </div>
-        <div className="flex items-center justify-between fixed bottom-0 w-full left-0 p-5 z-50 bg-white shadow-lg">
-          <Button type="button" onClick={handlePrev} disabled={currPos === 0}>
-            <MoveLeft /> &nbsp; Previous
-          </Button>
-          <Button
-            type="button"
-            onClick={handleNext}
-            disabled={currPos >= data.length - 1}
-          >
-            Next &nbsp; <MoveRight />
-          </Button>
-        </div>
+          ))
+        )}
       </div>
-    </div>
+      <div className="flex items-center justify-between fixed bottom-0 w-full left-0 p-5 z-50 bg-white shadow-lg">
+        <Button type="button" onClick={handlePrev} disabled={currPos === 0}>
+          <MoveLeft /> &nbsp; Previous
+        </Button>
+        <Button
+          type="button"
+          onClick={handleNext}
+          disabled={currPos >= data.length - 1}
+        >
+          Next &nbsp; <MoveRight />
+        </Button>
+      </div>
+    </WizardLayout>
   );
 }
