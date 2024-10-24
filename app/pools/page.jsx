@@ -15,27 +15,28 @@ import WizardLayout from "@/components/layout/wizard-layout";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Table as TableIcon } from "lucide-react";
 import { colors } from "@/colors_data";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import EnquiryForm from "@/components/forms/enquiry";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import useEmblaCarousel from "embla-carousel-react";
+import { galleryData } from "@/gallery_data";
+
+import "@/app/embla.css";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function Page() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isTableDialog, setIsTableDialog] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const {
     control,
@@ -46,11 +47,10 @@ export default function Page() {
     setValue,
     trigger,
   } = useForm({
-    defaultValues: { type: "", model: "", color: "", currPos: 1 },
+    defaultValues: { type: "", model: "", category: "", color: "", currPos: 1 },
   });
   const router = useRouter();
   const currPos = watch("currPos");
-
   const handlePrev = () => {
     const newPos = Math.max(1, currPos - 1);
     setValue("currPos", newPos);
@@ -105,7 +105,7 @@ export default function Page() {
 
   return (
     <WizardLayout>
-      <div className="container py-8">
+      <div className="container py-8 overflow-x-hidden">
         <form onSubmit={handleSubmit(onSubmit)}>
           {currPos === 1 && (
             <Type control={control} setValue={setValue} errors={errors} />
@@ -117,6 +117,7 @@ export default function Page() {
               setValue={setValue}
               errors={errors}
               type={watch("type")}
+              setIsTableDialog={setIsTableDialog}
             />
           )}
 
@@ -125,42 +126,45 @@ export default function Page() {
           )}
 
           {currPos === 4 && (
-            <div className=" space-y-8">
-              <div>
-                <H3>Selected Type</H3>
-
-                <TypeCard
-                  pool={{
-                    ...pools.find((item) => item.slug === watch("type")),
-                  }}
-                  control={control}
-                  className={"max-w-96"}
-                  selectable={false}
-                />
+            <div className="space-y-10">
+              <div className="flex gap-12 flex-wrap items-start">
+                <div className="space-y-2">
+                  <H3>Selected Type</H3>
+                  <TypeCard
+                    pool={{
+                      ...pools.find((item) => item.slug === watch("type")),
+                    }}
+                    control={control}
+                    className={"max-w-96"}
+                    selectable={false}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <H3>Selected Model</H3>
+                  <ModelCard
+                    item={{
+                      ...pools
+                        .find((item) => item.slug === watch("type"))
+                        .info.find((item) => item.model === watch("model")),
+                    }}
+                    control={control}
+                    className="max-w-32"
+                    selectable={false}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <H3>Selected Color</H3>
+                  <ColorCard
+                    item={selectedColor}
+                    control={control}
+                    className="max-w-32"
+                    selectable={false}
+                  />
+                </div>
               </div>
               <div>
-                <H3>Selected Model</H3>
-
-                <ModelCard
-                  item={{
-                    ...pools
-                      .find((item) => item.slug === watch("type"))
-                      .info.find((item) => item.model === watch("model")),
-                  }}
-                  control={control}
-                  className="max-w-32"
-                  selectable={false}
-                />
-              </div>
-              <div>
-                <H3>Selected Color</H3>
-
-                <ColorCard
-                  item={selectedColor}
-                  control={control}
-                  className="max-w-32"
-                  selectable={false}
-                />
+                <H3 className={"text-center mb-4"}>Related Options</H3>
+                <Gallery category={watch("category")} />
               </div>
             </div>
           )}
@@ -198,6 +202,20 @@ export default function Page() {
           </DialogHeader>
         </DialogContent>
       </Dialog>
+
+      <Dialog open={isTableDialog} onOpenChange={setIsTableDialog}>
+        {/* <DialogTrigger>Open</DialogTrigger> */}
+        <DialogContent className="">
+          <DialogHeader>
+            <DialogTitle className="sr-only">Enquiry?</DialogTitle>
+            <DialogDescription className="sr-only">
+              This action cannot be undone. This will permanently delete your
+              account and remove your data from our servers.
+            </DialogDescription>
+            <PoolInfoTable type={watch("type")} />
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </WizardLayout>
   );
 }
@@ -205,12 +223,12 @@ export default function Page() {
 function Type({ control, setValue, errors }) {
   return (
     <div>
-      <H2>Pool type</H2>
+      <H2 className={"text-center mb-10"}>Pool type</H2>
       {errors.type && (
         <span className="text-red-500">{errors.type.message}</span>
       )}
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pb-10">
+      <div className="grid justify-items-center grid-cols-[repeat(auto-fit,_minmax(300px,1fr))] gap-4 pb-10">
         {pools.map((pool, key) => (
           <TypeCard
             key={key}
@@ -224,16 +242,16 @@ function Type({ control, setValue, errors }) {
   );
 }
 
-function Model({ control, setValue, errors, type }) {
+function Model({ control, setValue, errors, type, setIsTableDialog }) {
   return (
     <div>
-      <H2>Model</H2>
+      <H2 className={"text-center mb-10"}>Model</H2>
 
       {errors.model && (
         <span className="text-red-500">{errors.model.message}</span>
       )}
 
-      <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-8 gap-4 pb-10">
+      <div className="grid justify-items-center grid-cols-[repeat(auto-fit,_minmax(128px,1fr))] gap-4 pb-10">
         {type
           ? pools
               .find((ele) => ele.slug === type)
@@ -246,6 +264,16 @@ function Model({ control, setValue, errors, type }) {
                 />
               ))
           : null}
+      </div>
+
+      <div className="text-end">
+        <Button
+          variant="outline"
+          type="button"
+          onClick={() => setIsTableDialog(true)}
+        >
+          Show table &nbsp; <TableIcon size={15} />
+        </Button>
       </div>
     </div>
   );
@@ -290,7 +318,7 @@ function TypeCard({ pool, control, setValue, selectable = true, className }) {
       render={({ field: { onChange, value } }) => (
         <div
           className={cn(
-            "bg-white transition-colors cursor-pointer p-4 rounded-lg drop-shadow-lg relative before:absolute before:inset-0 border-2 border-white before:rounded-lg before:z-10",
+            "bg-white transition-colors cursor-pointer p-4 rounded-lg drop-shadow-lg relative before:absolute before:inset-0 border-2 border-white before:rounded-lg before:z-10 max-w-[300px]",
             className,
             {
               "before:mix-blend-hue before:bg-white":
@@ -328,13 +356,20 @@ function ModelCard({ item, setValue, control, selectable = true, className }) {
       render={({ field: { onChange, value } }) => (
         <div
           className={cn(
-            "bg-white p-2 py-5 cursor-pointer rounded-lg drop-shadow-lg flex items-center border-2 border-white justify-center flex-col gap-2",
+            "bg-white p-2 py-5 cursor-pointer rounded-lg drop-shadow-lg flex items-center border-2 border-white justify-center flex-col gap-2 max-w-[128px]",
             className,
             {
               "border-primary": value && value === item.model,
             }
           )}
-          onClick={selectable ? () => setValue("model", item.model) : null}
+          onClick={
+            selectable
+              ? () => {
+                  setValue("model", item.model);
+                  setValue("category", item.category ? item.category : "other");
+                }
+              : null
+          }
         >
           <Image
             src={item.img}
@@ -359,7 +394,7 @@ function ColorCard({ control, setValue, item, selectable = true, className }) {
       render={({ field: { onChange, value } }) => (
         <div
           className={cn(
-            "bg-white p-2 cursor-pointer rounded-lg drop-shadow-lg flex items-center border-2 border-white justify-center flex-col gap-2",
+            "bg-white p-2 cursor-pointer max-w-[128px] rounded-lg drop-shadow-lg flex items-center border-2 border-white justify-center flex-col gap-2",
             className,
             {
               "border-primary": value && value === item.name,
@@ -381,34 +416,60 @@ function ColorCard({ control, setValue, item, selectable = true, className }) {
   );
 }
 
-function PoolInfoTable({ type }) {
+function Gallery({ category }) {
+  const [emblaRef] = useEmblaCarousel();
+  const gallery = galleryData.find(
+    (gallery) => gallery.category === category
+  ).images;
+
   return (
-    <Table>
-      <TableCaption className="sr-only">Info.</TableCaption>
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-[100px] text-center">MODEL</TableHead>
-          <TableHead className="w-[100px] text-center">LENGTH</TableHead>
-          <TableHead className="w-[100px] text-center">WIDTH</TableHead>
-          <TableHead className="w-[150px] text-center">SHALLOW END</TableHead>
-          <TableHead className="w-[100px] text-center">DEEP END</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {type
-          ? poolInfo[type].map((pool, key) => (
-              <TableRow key={key}>
-                <TableCell className="text-center">{pool?.model}</TableCell>
-                <TableCell className="text-center">{pool?.length}</TableCell>
-                <TableCell className="text-center">{pool?.width}</TableCell>
-                <TableCell className="text-center">
-                  {pool?.shallow_end}
-                </TableCell>
-                <TableCell className="text-center">{pool?.deep_end}</TableCell>
-              </TableRow>
-            ))
-          : null}
-      </TableBody>
-    </Table>
+    <div className="embla" ref={emblaRef}>
+      <div className="embla__container">
+        {gallery.map((img, key) => (
+          <div key={img} className="embla__slide aspect-video">
+            <Image
+              src={img}
+              width={500}
+              height={500}
+              alt={`${category}-${key + 1}`}
+              className="w-full h-full object-cover object-center rounded-lg"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function PoolInfoTable({ type }) {
+  console.log({ type });
+  const data = type ? pools.find((p) => p.slug === type).info : [];
+  console.log(data);
+  return (
+    <ScrollArea className="h-[200px] w-full">
+      <Table>
+        <TableCaption className="sr-only">Info.</TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[100px] text-center">MODEL</TableHead>
+            <TableHead className="w-[100px] text-center">LENGTH</TableHead>
+            <TableHead className="w-[100px] text-center">WIDTH</TableHead>
+            <TableHead className="w-[150px] text-center">SHALLOW END</TableHead>
+            <TableHead className="w-[100px] text-center">DEEP END</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {data.map((pool, key) => (
+            <TableRow key={key}>
+              <TableCell className="text-center">{pool?.model}</TableCell>
+              <TableCell className="text-center">{pool?.length}</TableCell>
+              <TableCell className="text-center">{pool?.width}</TableCell>
+              <TableCell className="text-center">{pool?.shallow_end}</TableCell>
+              <TableCell className="text-center">{pool?.deep_end}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </ScrollArea>
   );
 }

@@ -7,6 +7,7 @@ export const pools = [
     info: [
       {
         model: "X-Trainer 11.7",
+        category: "x-trainer",
         length: "11.74m",
         width: "4.2m",
         shallow_end: "1.09m",
@@ -15,6 +16,7 @@ export const pools = [
       },
       {
         model: "X-Trainer 10.2",
+        category: "x-trainer",
         length: "10.2m",
         width: "4.2m",
         shallow_end: "1.09m",
@@ -23,6 +25,7 @@ export const pools = [
       },
       {
         model: "X-Trainer 9.4",
+        category: "x-trainer",
         length: "9.4m",
         width: "4.2m",
         shallow_end: "1.07m",
@@ -31,6 +34,7 @@ export const pools = [
       },
       {
         model: "X-Trainer 8.2",
+        category: "x-trainer",
         length: "8.2m",
         width: "4.2m",
         shallow_end: "1.09m",
@@ -39,6 +43,7 @@ export const pools = [
       },
       {
         model: "X-Trainer 8.2 Slim",
+        category: "x-trainer",
         length: "8.2m",
         width: "3.0m",
         shallow_end: "1.09m",
@@ -47,6 +52,7 @@ export const pools = [
       },
       {
         model: "X-Trainer 7.2",
+        category: "x-trainer",
         length: "7.2m",
         width: "3.7m",
         shallow_end: "1.09m",
@@ -55,6 +61,7 @@ export const pools = [
       },
       {
         model: "X-Trainer 7.15 Slim",
+        category: "x-trainer",
         length: "7.15m",
         width: "3.0m",
         shallow_end: "1.09m",
@@ -63,6 +70,7 @@ export const pools = [
       },
       {
         model: "Sanctuary 10.6",
+        category: "sanctuary",
         length: "10.6m",
         width: "4.2m",
         shallow_end: "1.18m",
@@ -71,6 +79,7 @@ export const pools = [
       },
       {
         model: "Sanctuary 9.4",
+        category: "sanctuary",
         length: "9.4m",
         width: "4.2m",
         shallow_end: "1.18m",
@@ -79,6 +88,7 @@ export const pools = [
       },
       {
         model: "Sanctuary 8.2",
+        category: "sanctuary",
         length: "8.2m",
         width: "4.2m",
         shallow_end: "1.18m",
@@ -87,6 +97,7 @@ export const pools = [
       },
       {
         model: "Sanctuary 7.0",
+        category: "sanctuary",
         length: "7.0m",
         width: "4.2m",
         shallow_end: "1.18m",
@@ -95,6 +106,7 @@ export const pools = [
       },
       {
         model: "Sanctuary 6.0",
+        category: "sanctuary",
         length: "6.0m",
         width: "4.2m",
         shallow_end: "1.18m",
@@ -103,6 +115,7 @@ export const pools = [
       },
       {
         model: "Sanctuary 6.0 Narrow",
+        category: "sanctuary",
         length: "6.0m",
         width: "3.4m",
         shallow_end: "1.18m",
@@ -111,6 +124,7 @@ export const pools = [
       },
       {
         model: "Vogue 10.2",
+        category: "vogue",
         length: "10.2m",
         width: "4.2m",
         shallow_end: "1.09m",
@@ -119,6 +133,7 @@ export const pools = [
       },
       {
         model: "Vogue 9.4",
+        category: "vogue",
         length: "9.4m",
         width: "4.2m",
         shallow_end: "1.09m",
@@ -127,6 +142,7 @@ export const pools = [
       },
       {
         model: "Vogue 8.2",
+        category: "vogue",
         length: "8.2m",
         width: "4.2m",
         shallow_end: "1.09m",
@@ -135,6 +151,7 @@ export const pools = [
       },
       {
         model: "Vogue 7.15",
+        category: "vogue",
         length: "7.15m",
         width: "3.6m",
         shallow_end: "1.09m",
@@ -143,6 +160,7 @@ export const pools = [
       },
       {
         model: "Vogue 7.15 Slim",
+        category: "vogue",
         length: "7.15m",
         width: "3.0m",
         shallow_end: "1.09m",
@@ -158,7 +176,8 @@ export const pools = [
     img: "/images/lap-pool.png",
     info: [
       {
-        model: "10.3",
+        model: "Fastlane 10.3",
+        category: "fastlane",
         length: "10.3m",
         width: "2.78m",
         shallow_end: "1.46m",
@@ -167,6 +186,7 @@ export const pools = [
       },
       {
         model: "Custom Length Fastlane",
+        category: "fastlane",
         length: "Up to 30m",
         width: "2.78m",
         shallow_end: "1.46m",
@@ -175,6 +195,7 @@ export const pools = [
       },
       {
         model: "Optional External Steps",
+        category: "",
         length: "3.2m",
         width: "1.2m",
         shallow_end: "",
@@ -191,6 +212,7 @@ export const pools = [
     info: [
       {
         model: "X-Trainer 5.8",
+        category: "x-trainer",
         length: "5.8m",
         width: "3.0m",
         shallow_end: "1.11m",
@@ -199,6 +221,7 @@ export const pools = [
       },
       {
         model: "X-Trainer 5.8 Slim",
+        category: "x-trainer",
         length: "5.8m",
         width: "2.7m",
         shallow_end: "1.11m",
@@ -207,6 +230,7 @@ export const pools = [
       },
       {
         model: "Plunge 5.0",
+        category: "plunge",
         length: "5.0m",
         width: "3.4m",
         shallow_end: "1.42m",
@@ -215,6 +239,7 @@ export const pools = [
       },
       {
         model: "Plunge 3.8",
+        category: "plunge",
         length: "3.8m",
         width: "2.13m",
         shallow_end: "1.2m",
@@ -223,6 +248,7 @@ export const pools = [
       },
       {
         model: "Plunge 2.8",
+        category: "plunge",
         length: "2.8m",
         width: "2.13m",
         shallow_end: "1.2m",
@@ -231,6 +257,7 @@ export const pools = [
       },
       {
         model: "Sanctuary 6.0",
+        category: "sanctuary",
         length: "6.0m",
         width: "4.2m",
         shallow_end: "1.18m",
@@ -239,6 +266,7 @@ export const pools = [
       },
       {
         model: "Sanctuary 6.0 Narrow",
+        category: "sanctuary",
         length: "6.0m",
         width: "3.4m",
         shallow_end: "1.18m",
@@ -247,6 +275,7 @@ export const pools = [
       },
       {
         model: "Sanctuary 4.8",
+        category: "sanctuary",
         length: "4.8m",
         width: "3.4m",
         shallow_end: "1.18m",
@@ -255,6 +284,7 @@ export const pools = [
       },
       {
         model: "4 Plunge",
+        category: "plunge",
         length: "4.37m",
         width: "2.22m",
         shallow_end: "1.24m",
@@ -263,6 +293,7 @@ export const pools = [
       },
       {
         model: "3 Plunge",
+        category: "plunge",
         length: "3.37m",
         width: "2.22m",
         shallow_end: "1.24m",
@@ -271,6 +302,7 @@ export const pools = [
       },
       {
         model: "Relax 6.3",
+        category: "",
         length: "6.72m",
         width: "2.33m",
         shallow_end: "1.39m",
@@ -279,6 +311,7 @@ export const pools = [
       },
       {
         model: "Relax 5.2",
+        category: "",
         length: "5.70m",
         width: "2.33m",
         shallow_end: "1.39m",
@@ -287,6 +320,7 @@ export const pools = [
       },
       {
         model: "Relax 4.0",
+        category: "",
         length: "4.47m",
         width: "2.33m",
         shallow_end: "1.39m",
@@ -295,6 +329,7 @@ export const pools = [
       },
       {
         model: "Refresh Max",
+        category: "",
         length: "6.60m",
         width: "3.05m",
         shallow_end: "1.49m",
@@ -311,6 +346,7 @@ export const pools = [
     info: [
       {
         model: "Fastlane 10.3",
+        category: "fastlane",
         length: "10.3m",
         width: "2.78m",
         shallow_end: "1.46m",
@@ -319,6 +355,7 @@ export const pools = [
       },
       {
         model: "Custom Length Fastlane",
+        category: "fastlane",
         length: "Up to 30m",
         width: "2.78m",
         shallow_end: "1.46m",
@@ -327,6 +364,7 @@ export const pools = [
       },
       {
         model: "X-Trainer Spa",
+        category: "x-trainer",
         length: "2.8m",
         width: "1.8m",
         shallow_end: "1.1m",
@@ -335,6 +373,7 @@ export const pools = [
       },
       {
         model: "Immersion Therapy Pod",
+        category: "",
         length: "1.93m",
         width: "0.9m",
         shallow_end: "0.8m",
