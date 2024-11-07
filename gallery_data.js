@@ -2,6 +2,7 @@ export const galleryData = [
   {
     category: "fastlane",
     images: [
+      "/images/gallery/fastlane8.jpg",
       "/images/gallery/fastlane1.jpg",
       "/images/gallery/fastlane2.jpg",
       "/images/gallery/fastlane3.jpg",
@@ -12,8 +13,10 @@ export const galleryData = [
     ],
   },
   {
-    category: "plunge",
+    category: "plunge-pools",
     images: [
+      "/images/gallery/plunge10.jpg",
+      "/images/gallery/plunge11.jpg",
       "/images/gallery/plunge1.jpg",
       "/images/gallery/plunge2.jpg",
       "/images/gallery/plunge3.jpg",
@@ -28,6 +31,9 @@ export const galleryData = [
   {
     category: "sanctuary",
     images: [
+      "/images/gallery/sanctuary9.jpg",
+      "/images/gallery/sanctuary10.jpg",
+      "/images/gallery/sanctuary11.jpg",
       "/images/gallery/sanctuary1.jpg",
       "/images/gallery/sanctuary2.jpg",
       "/images/gallery/sanctuary3.jpg",
@@ -54,7 +60,15 @@ export const galleryData = [
   {
     category: "x-trainer",
     images: [
-      "/images/gallery/xtrainer1.jpg",
+      "/images/gallery/xtrainer18.jpg",
+      "/images/gallery/xtrainer19.jpg",
+      "/images/gallery/xtrainer20.jpg",
+      "/images/gallery/xtrainer21.jpg",
+      "/images/gallery/xtrainer22.jpg",
+      "/images/gallery/xtrainer23.jpg",
+      "/images/gallery/xtrainer24.jpg",
+      "/images/gallery/xtrainer25.jpg",
+      "/images/gallery/xtrainer26.jpg",
       "/images/gallery/xtrainer2.jpg",
       "/images/gallery/xtrainer3.jpg",
       "/images/gallery/xtrainer4.jpg",
