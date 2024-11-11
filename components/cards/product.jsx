@@ -30,7 +30,7 @@ export default function ProductCard({ ind, product, handleSubmit, isLoading }) {
     phone: "",
     message: `I want to enquire about ${product.title} in ${product.size} MM, ${
       product.persons
-    } Person and ${String(product.lounger).toLocaleUpperCase()} Lounger.`,
+    } People and ${String(product.lounger).toLocaleUpperCase()} Lounger.`,
     email: "",
   });
 
