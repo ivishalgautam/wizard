@@ -20,6 +20,7 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { motion } from "framer-motion";
+import { VideoDialog } from "../dialogs/video-dialog";
 
 export default function ProductCard({ ind, product, handleSubmit, isLoading }) {
   const [inputs, setInputs] = useState({
@@ -27,7 +28,9 @@ export default function ProductCard({ ind, product, handleSubmit, isLoading }) {
     name: "",
     email: "support@brandingwaale.com",
     phone: "",
-    message: `I want enquire about ${product.title}`,
+    message: `I want to enquire about ${product.title} in ${product.size} MM, ${
+      product.persons
+    } Person and ${String(product.lounger).toLocaleUpperCase()} Lounger.`,
     email: "",
   });
 
@@ -42,25 +45,32 @@ export default function ProductCard({ ind, product, handleSubmit, isLoading }) {
       className="bg-white shadow-lg rounded-xl p-8 col-span-12 sm:col-span-6 md:col-span-4"
     >
       <H6 className={"text-center mb-2 font-extrabold"}>{product.title}</H6>
-      <div className="">
-        <Swiper
-          spaceBetween={50}
-          slidesPerView={1}
-          navigation
-          modules={[Navigation]}
-        >
-          {product.images.map((img) => (
-            <SwiperSlide key={img}>
-              <Image
-                width={500}
-                height={500}
-                src={img}
-                alt={product.title}
-                className="mx-auto"
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+      <div className="relative">
+        <div>
+          <Swiper
+            spaceBetween={50}
+            slidesPerView={1}
+            navigation
+            modules={[Navigation]}
+          >
+            {product.images.map((img) => (
+              <SwiperSlide key={img}>
+                <Image
+                  width={500}
+                  height={500}
+                  src={img}
+                  alt={product.title}
+                  className="mx-auto"
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        {product.video && (
+          <div className="text-center my-2 absolute z-10 bottom-0 right-2">
+            <VideoDialog videoURL={product.video} />
+          </div>
+        )}
       </div>
 
       <div className="flex flex-col items-center justify-center space-y-1">
@@ -110,10 +120,10 @@ export default function ProductCard({ ind, product, handleSubmit, isLoading }) {
             <div className="grid gap-2 py-4">
               <div className="">
                 <Label htmlFor="username" className="text-right">
-                  Fullname
+                  Full Name
                 </Label>
                 <Input
-                  placeholder="Enter fullname"
+                  placeholder="Enter Full Name"
                   id="fullname"
                   className="col-span-3"
                   onChange={(e) =>
@@ -155,13 +165,8 @@ export default function ProductCard({ ind, product, handleSubmit, isLoading }) {
                   placeholder="Enter Message"
                   id="message"
                   className="col-span-3"
-                  onChange={(e) =>
-                    setInputs((prev) => ({
-                      ...prev,
-                      message: e.target.value,
-                    }))
-                  }
                   disabled
+                  value={inputs.message}
                 />
               </div>
             </div>

@@ -23,9 +23,9 @@ export default function EnquiryForm({ message = "", handleEnquirySubmit }) {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid gap-2 py-4">
         <div className="">
-          <Label className="text-right">Fullname</Label>
+          <Label className="text-right">Full Name</Label>
           <Input
-            placeholder="Enter fullname"
+            placeholder="Enter full Name"
             id="fullname"
             className="col-span-3"
             {...register("fullname", { required: "Required*" })}

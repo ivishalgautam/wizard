@@ -5,7 +5,7 @@ import Link from "next/link";
 import React from "react";
 import { buttonVariants } from "../ui/button";
 
-export default function WizardLayout({ children }) {
+export default function WizardLayout({ children, marquee = false }) {
   return (
     <div>
       <div className="relative before:absolute before:bg-black/50 before:top-0 before:left-0 before:w-full before:h-full">
@@ -37,16 +37,19 @@ export default function WizardLayout({ children }) {
           />
         </div>
       </div>
-      <div className="overflow-hidden whitespace-nowrap bg-primary text-white py-1">
-        <div className="inline-block animate-marquee divide-x-2">
-          {Array.from({ length: 3 }).map((_, key) => (
-            <span key={key} className="px-4">
-              Buy a Spa and have it delivered before Christmas to receive 6 free
-              spa valets.
-            </span>
-          ))}
+
+      {marquee && (
+        <div className="overflow-hidden whitespace-nowrap bg-primary text-white py-1">
+          <div className="inline-block animate-marquee divide-x-2">
+            {Array.from({ length: 3 }).map((_, key) => (
+              <span key={key} className="px-4">
+                Buy a Spa and have it delivered before Christmas to receive 6
+                free spa valets.
+              </span>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="mt-20">{children}</div>
     </div>

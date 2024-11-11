@@ -110,7 +110,7 @@ export default function WizardForm({ setIsFormSubmit }) {
   };
 
   return (
-    <WizardLayout>
+    <WizardLayout marquee={true}>
       <ProgressBar data={data} currPos={currPos} />
 
       <div className="container p-8 space-y-20 pb-32">
